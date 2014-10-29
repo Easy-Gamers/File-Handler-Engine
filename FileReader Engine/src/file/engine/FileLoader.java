@@ -15,6 +15,7 @@ public class FileLoader {
 	private String homeFolder;
 	public static String fileSplit = System.getProperty("file.separator");
 	public static String home = System.getProperty("user.home");
+	public static String defaultFolder = "";
 	
 	//public int Home = 0, Settings = 1, Enemies = 2, Saves = 3, Spells = 4, Npcs = 5, Cities = 6;
 	
@@ -44,55 +45,20 @@ public class FileLoader {
 	public void CreateFile(String location, String[][] Stats) {
 			File file = new File(location);
 			if(!file.exists()) {
-				//WriteToFiles(location);
-			//} else {
-//				boolean settings = false;
-//				boolean saves = false;
-//				boolean enemies = false;
-//				boolean spells = false;
-//                boolean dialouges = false;
-				
-//				if(location.equals(Destinyor.DestinyorSettings)) {
-//					location = Destinyor.DestinyorFolder;
-//					settings = true;
-//				}
-//				if(location.equals(Destinyor.DestinyorSaves)) {
-//					location = Destinyor.DestinyorFolder;
-//					saves = true;
-//				}
-//				if(location.equals(Destinyor.DestinyorEnemies)) {
-//					location = Destinyor.DestinyorFolder;
-//					enemies = true;
-//				}
-//				if(location.equals(Destinyor.DestinyorSpells)) {
-//					location = Destinyor.DestinyorFolder;
-//					spells = true;
-//				}
-//                                
-//                                if(location.equals(Destinyor.DestinyorWindowNpcs)) {
-//                                    location = Destinyor.DestinyorFolder;
-//                                    dialouges = true;
-//                                }
 				File dir = new File(homeFolder);
 				dir.mkdirs();
-//				if(settings) {
-//					location = Destinyor.DestinyorSettings;
-//				}
-//				if(saves) {
-//					location = Destinyor.DestinyorSaves;
-//				}
-//				if(enemies) {
-//					location = Destinyor.DestinyorEnemies;
-//				}
-//				if(spells) {
-//					location = Destinyor.DestinyorSpells;
-//				}
-//                if(dialouges) {
-//                	location = Destinyor.DestinyorWindowNpcs;
-//                }
+				
                 WriteToFiles(location, Stats);
 			}
 	}
+	
+	public void CreateFile(String location) {
+		File file = new File(location);
+		if(!file.exists()) {
+			File dir = new File(homeFolder);
+			dir.mkdirs();
+		}
+}
 	
 	/**
 	 * Used for reading files from one method, saves the programmer the trouble of looking through the Reader.java file for the method
@@ -107,26 +73,16 @@ public class FileLoader {
 			String[][] args = {Reader.ReadUnknown(location)};
 			return args;
 		}
-//		if(no == Settings) {
-//			Reader.ReadSettings(location);
-//		}
-//		
-//		if(no == Enemies) {
-//			Reader.ReadEnemies(location);
-//		}
-//		
-//		if(no == Saves) {
-//			Reader.ReadPlayer(location);
-//		}
-//		
-//		if(no == Spells) {
-//			Reader.ReadSpells(location);
-//		}
-//                
-//        if(no == Npcs) {
-//        	Reader.ReadNpcs(location);
-//        }
 	}
+	
+//	public String[][] ReadFromFiles(String location, String[] Stats, String[] first) {
+//		if(Stats != null) {
+//			return Reader.ReadDefault(location, Stats);
+//		} else {
+//			String[][] args = {Reader.ReadUnknown(location)};
+//			return args;
+//		}
+//	}
 	
 	public String Read(String location) {
 		return Reader.Read(location);
