@@ -1,38 +1,11 @@
 package file.engine.reader;
 
-//import me.zabuzasword3.engine.DebugWriter;
-//import me.zabuzasword3.engine.Destinyor;
-//import me.zabuzasword3.engine.entities.Boss;
-//import me.zabuzasword3.engine.entities.Enemy;
-//import me.zabuzasword3.engine.entities.NPC;
-//import me.zabuzasword3.engine.graphics.Resolution;
-//import me.zabuzasword3.engine.magic.Element;
-//import me.zabuzasword3.engine.player.Player;
-//import me.zabuzasword3.engine.magic.Spells;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.File;
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.Map;
-//import java.util.HashMap;
-
-//import file.engine.Errors;
-//import me.zabuzasword3.engine.messages.Errors;
 
 public class Reader {
-	
-	//private static BufferedReader br;
-	
-//    public static List<String> KEYS = new ArrayList<>();
-//    public static List<String> SPELLKEYS = new ArrayList<>();
-//    public static List<String> NPCKEYS = new ArrayList<>();
-//    public static List<String> PlayerKeys = new ArrayList<>();
-//    public static int k = 0;
-//    public static boolean Override = false;
-//    public static boolean Debug = false;
 	
 	public static String Read(String location) {
 		BufferedReader br;
@@ -41,6 +14,52 @@ public class Reader {
 		
 		try {
 			br = new BufferedReader(new FileReader(new File(location)));
+			
+			while(nullchecker != null) {
+				nullchecker = br.readLine();
+				if(nullchecker != null) {
+					stuff += nullchecker;
+				}
+			}
+			
+			br.close();
+		} catch(IOException e) {
+            e.printStackTrace();
+		}
+		return stuff;
+	}
+	/**
+	 * 
+	 * @param location
+	 * @oaram lineskip
+	 * @param lineskip2
+	 * @param linesRead
+	 **/
+	public static String[][] read(String location, int lineskip, int lineskip2, int linesRead) {
+		BufferedReader br;
+		String[][] stuff;
+		List<String> stuff2 = new ArrayList<>();
+		List<String[]> stuff3 = new ArrayList<>();
+		String nullchecker = "";
+		
+		try {
+			br = new BufferedReader(new FileReader(new File(location)));
+			
+			for(int i = 0; i < lineskip; i++) {
+				br.readLine();
+			}
+			
+			while(nullchecker != null) {
+				for(int i = 0; i < linesRead; i++) {
+					nullchecker = br.readLine();
+					if(nullchecker != null) {
+						stuff2.add(nullchecker);
+					}
+				}
+				for(String string : stuff2) {
+					// Add infinite array	
+				}
+			}
 			
 			while(nullchecker != null) {
 				nullchecker = br.readLine();
